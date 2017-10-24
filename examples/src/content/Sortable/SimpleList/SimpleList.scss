@@ -1,0 +1,8 @@
+////
+/// Content
+/// Simple list
+////
+
+.SimpleList {
+  @include centered-width(columns(4));
+}
