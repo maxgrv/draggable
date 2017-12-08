@@ -1,10 +1,10 @@
 import {Sortable} from '../../../scripts/vendor/draggable';
 
 export default function Transformed() {
-  const containerSelector = '#Transformed .TransformedList';
+  const containerSelector = '#Transformed .PaperStack';
   const containers = document.querySelectorAll(containerSelector);
   const sortable = new Sortable(containers, {
-    draggable: '.TransformedListItem--isDraggable',
+    draggable: '.PaperStackItem--isDraggable',
     appendTo: containerSelector,
     mirror: {
       constrainDimensions: true,
@@ -13,11 +13,11 @@ export default function Transformed() {
 
   // --- Drag states --- //
   sortable.on('drag:start', evt => {
-    evt.originalSource.classList.add('TransformedListItem--isCloned');
+    evt.originalSource.classList.add('PaperStackItem--isCloned');
   });
 
   sortable.on('drag:stop', evt => {
-    evt.originalSource.classList.remove('TransformedListItem--isCloned');
+    evt.originalSource.classList.remove('PaperStackItem--isCloned');
   });
 
   return sortable;
