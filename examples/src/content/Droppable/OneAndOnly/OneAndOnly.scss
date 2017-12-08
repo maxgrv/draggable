@@ -40,6 +40,8 @@ $grid-columns: 4;
     background-color: get-color(coal, dark);
 
     @media screen and (min-width: get-breakpoint(tablet)) {
+      // special fractions to line up with the flexContainer
+      grid-template-columns: 1fr 1.025fr 1.025fr 1fr;
       grid-template-areas:
         'a c c g'
         'a c c g'

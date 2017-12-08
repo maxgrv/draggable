@@ -14,12 +14,10 @@ export default function SimpleList() {
   // --- Drag states --- //
   sortable.on('drag:start', evt => {
     evt.originalSource.classList.add('StackedListItem--isCloned');
-    console.log('Drag: Start', evt); // eslint-disable-line no-console
   });
 
   sortable.on('drag:stop', evt => {
     evt.originalSource.classList.remove('StackedListItem--isCloned');
-    console.log('Drag: Stop', evt); // eslint-disable-line no-console
   });
 
   return sortable;

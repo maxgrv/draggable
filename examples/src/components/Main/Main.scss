@@ -24,3 +24,7 @@
       (get-layout-length(sidebar) + get-spacing(fattest));
   }
 }
+
+.MainInterior {
+  @include centered-width(get-layout-length(main-interior));
+}

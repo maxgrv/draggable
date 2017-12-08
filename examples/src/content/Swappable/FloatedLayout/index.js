@@ -19,7 +19,6 @@ export default function FloatedLayout() {
   swappable.on('drag:start', evt => {
     // MAX WILL UPDATE THE LIB TO HAVE A NEW CLASS I CAN HOOK INTO
     evt.originalSource.classList.add('Block--isCloned');
-    console.log('Drag: Start', evt); // eslint-disable-line no-console
   });
 
   /*
@@ -34,7 +33,6 @@ export default function FloatedLayout() {
 
   swappable.on('drag:stop', evt => {
     evt.originalSource.classList.remove('Block--isCloned');
-    console.log('Drag: Stop', evt); // eslint-disable-line no-console
   });
 
   return swappable;
