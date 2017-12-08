@@ -9,6 +9,7 @@ import Transformed from '../content/Sortable/Transformed';
 import MultipleContainers from '../content/Sortable/MultipleContainers';
 import FloatedLayout from '../content/Swappable/FloatedLayout';
 import GridLayout from '../content/Swappable/GridLayout';
+import Collidable from '../content/Plugins/Collidable';
 import SwapAnimation from '../content/Plugins/SwapAnimation';
 
 const navActivator = document.getElementById('MobileNavActivator');
@@ -26,5 +27,6 @@ SimpleList();
 Transformed();
 MultipleContainers();
 FloatedLayout();
-SwapAnimation();
 GridLayout();
+Collidable();
+SwapAnimation();

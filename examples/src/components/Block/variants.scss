@@ -57,6 +57,10 @@
   }
 }
 
+.BlockLayout--typePositioned {
+  position: relative;
+}
+
 ///
 /// Block types
 
@@ -77,8 +81,6 @@
 }
 
 .Block--typeStripes {
-  pointer-events: none;
-
   .BlockContent {
     @include stripes-loose-bg;
     border-color: get-color(coal, dark);
