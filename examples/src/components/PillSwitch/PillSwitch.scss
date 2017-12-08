@@ -3,8 +3,9 @@
 /// PillSwitch
 ////
 
-@import './props';
 @import 'utilities/layout';
+@import './props';
+@import '../Patterns/props';
 
 .PillSwitch {
   position: relative;
@@ -22,13 +23,14 @@
 
 .PillSwitchTrack {
   @include pill-switch-track-layout;
+  @include halftone-bg;
   position: absolute;
   top: 50%;
   left: 50%;
   background-color: get-color(coal, dark);
   border: get-border() solid get-color(coal, dark);
   transform: rotate(-45deg);
-  // transform-origin: bottom left;
+  overflow: hidden;
 
   @media screen and (min-width: get-breakpoint(tablet)) {
     @include pill-switch-track-layout('tablet');
@@ -76,11 +78,3 @@
     visibility: hidden;
   }
 }
-
-/*
-.PillSwitchDropzone {
-  @include pill-switch-control;
-  right: 0;
-  background: green;
-}
-*/
