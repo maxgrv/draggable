@@ -21,16 +21,18 @@ export default function BasicDragging() {
   draggable.on('mirror:created', evt => {
     sourceRect = evt.originalSource.getBoundingClientRect();
     sourceContainerRect = evt.sourceContainer.getBoundingClientRect();
-  })
+  });
 
   draggable.on('drag:move', evt => {
     evt.cancel();
 
-    const offset = (initialMousePosition.clientY - evt.sensorEvent.clientY) * 2 * 0.5
+    const offset = (initialMousePosition.clientY - evt.sensorEvent.clientY) * 2 * 0.5;
     const left = sourceRect.left + offset;
     const top = sourceRect.top - offset;
 
-    if (top < sourceContainerRect.top || left < sourceContainerRect.left) { return; }
+    if (top < sourceContainerRect.top || left < sourceContainerRect.left) {
+      return;
+    }
 
     requestAnimationFrame(() => {
       evt.mirror.style.transform = `translate3d(${left}px, ${top}px, 0)`;
