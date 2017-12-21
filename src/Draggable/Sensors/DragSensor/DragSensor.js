@@ -192,12 +192,12 @@ export default class DragSensor extends Sensor {
       return;
     }
 
-    const nativeDraggableElement = closest(event.target, (element) => element.draggable);
+    //const nativeDraggableElement = closest(event.target, (element) => element.draggable);
 
-    if (nativeDraggableElement) {
-      nativeDraggableElement.draggable = false;
-      this.nativeDraggableElement = nativeDraggableElement;
-    }
+    //if (nativeDraggableElement) {
+      //nativeDraggableElement.draggable = false;
+      //this.nativeDraggableElement = nativeDraggableElement;
+    //}
 
     document.addEventListener('mouseup', this[onMouseUp], true);
     document.addEventListener('dragstart', this[onDragStart], false);
@@ -212,7 +212,7 @@ export default class DragSensor extends Sensor {
     }
 
     this.mouseDownTimeout = setTimeout(() => {
-      target.draggable = true;
+      //target.draggable = true;
       this.draggableElement = target;
     }, this.options.delay);
   }
@@ -241,12 +241,12 @@ export default class DragSensor extends Sensor {
     document.removeEventListener('drop', this[onDrop], false);
 
     if (this.nativeDraggableElement) {
-      this.nativeDraggableElement.draggable = true;
+      //this.nativeDraggableElement.draggable = true;
       this.nativeDraggableElement = null;
     }
 
     if (this.draggableElement) {
-      this.draggableElement.draggable = false;
+     // this.draggableElement.draggable = false;
       this.draggableElement = null;
     }
   }
