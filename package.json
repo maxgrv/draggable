@@ -9,12 +9,12 @@
   "repository": "https://github.com/Shopify/draggable",
   "contributors": [
     {
-      "name" : "Max Hoffmann",
-      "email" : "max.hoffmann@shopify.com"
+      "name": "Max Hoffmann",
+      "email": "max.hoffmann@shopify.com"
     },
     {
-      "name" : "Curtis Dulmage",
-      "email" : "curtis.dulmage@shopify.com"
+      "name": "Curtis Dulmage",
+      "email": "curtis.dulmage@shopify.com"
     }
   ],
   "bugs": {
