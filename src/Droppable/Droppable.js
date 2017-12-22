@@ -116,10 +116,7 @@ export default class Droppable extends Draggable {
     this.initialDroppable = droppable;
 
     for (const droppableElement of this.droppables) {
-      if (droppableElement.classList.contains(this.getClassNameFor('droppable:occupied'))) {
-        continue;
-      }
-
+      
       droppableElement.classList.add(this.getClassNameFor('droppable:active'));
     }
   }
@@ -133,16 +130,22 @@ export default class Droppable extends Draggable {
     if (event.canceled()) {
       return;
     }
-
+    
     const droppable = this[closestDroppable](event.sensorEvent.target);
-    const overEmptyDroppable = droppable && !droppable.classList.contains(this.getClassNameFor('droppable:occupied'));
+    
+    if (droppable && this[drop](event, droppable)) {
 
-    if (overEmptyDroppable && this[drop](event, droppable)) {
+
+      if(this.lastDroppable!=droppable && this.lastDroppable && this.lastDroppable != this.initialDroppable)
+      {
+        this[release](event);
+
+      }
+
       this.lastDroppable = droppable;
-    } else if ((!droppable || droppable === this.initialDroppable) && this.lastDroppable) {
-      this[release](event);
-      this.lastDroppable = null;
+
     }
+
   }
 
   /**
@@ -151,14 +154,10 @@ export default class Droppable extends Draggable {
    * @param {DragStopEvent} event - Drag stop event
    */
   [onDragStop]() {
-    const occupiedClass = this.getClassNameFor('droppable:occupied');
+    
 
     for (const droppable of this.droppables) {
       droppable.classList.remove(this.getClassNameFor('droppable:active'));
-    }
-
-    if (this.lastDroppable && this.lastDroppable !== this.initialDroppable) {
-      this.initialDroppable.classList.remove(occupiedClass);
     }
 
     this.droppables = null;
@@ -183,15 +182,6 @@ export default class Droppable extends Draggable {
     if (droppableOverEvent.canceled()) {
       return false;
     }
-
-    const occupiedClass = this.getClassNameFor('droppable:occupied');
-
-    if (this.lastDroppable) {
-      this.lastDroppable.classList.remove(occupiedClass);
-    }
-
-   /// droppable.appendChild(event.source);
-    droppable.classList.add(occupiedClass);
 
     return true;
   }
