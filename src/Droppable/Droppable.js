@@ -139,11 +139,17 @@ export default class Droppable extends Draggable {
       if(this.lastDroppable!=droppable && this.lastDroppable && this.lastDroppable != this.initialDroppable)
       {
         this[release](event);
-
-      }
-
+        
+      } 
+      
       this.lastDroppable = droppable;
 
+      return;
+    } 
+    
+    if(this.lastDroppable)
+    {
+      this[release](event);
     }
 
   }
