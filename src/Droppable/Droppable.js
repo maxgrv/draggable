@@ -190,7 +190,7 @@ export default class Droppable extends Draggable {
       this.lastDroppable.classList.remove(occupiedClass);
     }
 
-    droppable.appendChild(event.source);
+   /// droppable.appendChild(event.source);
     droppable.classList.add(occupiedClass);
 
     return true;
@@ -213,7 +213,7 @@ export default class Droppable extends Draggable {
       return;
     }
 
-    this.initialDroppable.appendChild(event.source);
+    ////this.initialDroppable.appendChild(event.source);
     this.lastDroppable.classList.remove(this.getClassNameFor('droppable:occupied'));
   }
 
