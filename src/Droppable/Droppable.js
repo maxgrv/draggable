@@ -7,7 +7,7 @@ import {
 } from './DroppableEvent';
 
 const onDragStart = Symbol('onDragStart');
-
+const onDragMove = Symbol('onDragMove');
 const onDragStop = Symbol('onDragStop');
 const drop = Symbol('drop');
 const release = Symbol('release');
@@ -65,12 +65,12 @@ export default class Droppable extends Draggable {
     this.initialDroppable = null;
 
     this[onDragStart] = this[onDragStart].bind(this);
-   
+    this[onDragMove] = this[onDragMove].bind(this);
     this[onDragStop] = this[onDragStop].bind(this);
 
     this
       .on('drag:start', this[onDragStart])
-    
+      .on('drag:move', this[onDragMove])
       .on('drag:stop', this[onDragStop]);
   }
 
@@ -82,7 +82,7 @@ export default class Droppable extends Draggable {
 
     this
       .off('drag:start', this[onDragStart])
-    
+      .off('drag:move', this[onDragMove])
       .off('drag:stop', this[onDragStop]);
   }
 
@@ -124,7 +124,26 @@ export default class Droppable extends Draggable {
     }
   }
 
- 
+  /**
+   * Drag move handler
+   * @private
+   * @param {DragMoveEvent} event - Drag move event
+   */
+  [onDragMove](event) {
+    if (event.canceled()) {
+      return;
+    }
+
+    const droppable = this[closestDroppable](event.sensorEvent.target);
+    const overEmptyDroppable = droppable && !droppable.classList.contains(this.getClassNameFor('droppable:occupied'));
+
+    if (overEmptyDroppable && this[drop](event, droppable)) {
+      this.lastDroppable = droppable;
+    } else if ((!droppable || droppable === this.initialDroppable) && this.lastDroppable) {
+      this[release](event);
+      this.lastDroppable = null;
+    }
+  }
 
   /**
    * Drag stop handler
