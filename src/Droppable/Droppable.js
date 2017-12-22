@@ -130,7 +130,11 @@ export default class Droppable extends Draggable {
    * @param {DragMoveEvent} event - Drag move event
    */
   [onDragMove](event) {
-    if (event.canceled()) {
+
+    super(event);
+    
+
+    /*if (event.canceled()) {
       return;
     }
 
@@ -142,7 +146,7 @@ export default class Droppable extends Draggable {
     } else if ((!droppable || droppable === this.initialDroppable) && this.lastDroppable) {
       this[release](event);
       this.lastDroppable = null;
-    }
+    }*/
   }
 
   /**
