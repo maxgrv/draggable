@@ -115,13 +115,13 @@ export default class DragSensor extends Sensor {
       }
     }, 0);
 
-    let inte = window.requestAnimationFrame(() => {
+    let inte = window.setInterval(() => {
       
      
       
       if(!this.dragging)
       {
-        cancelAnimationFrame(inte);
+        clearInterval(inte);
 
         this.lastEvent = null;
       } else 
@@ -131,7 +131,7 @@ export default class DragSensor extends Sensor {
       }
 
 
-    });
+    }, 150);
   }
 
 
@@ -181,7 +181,7 @@ export default class DragSensor extends Sensor {
       }
       this.lastEvent = event;
       event.preventDefault();
-
+      console.log(".");
   }
 
   /**
