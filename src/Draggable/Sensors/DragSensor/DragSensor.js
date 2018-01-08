@@ -166,20 +166,14 @@ export default class DragSensor extends Sensor {
       this.lastEvent = event;
       event.preventDefault();
 
-      
-      clearTimeout(this.timeout);
-
-      this.timeout = setTimeout(()=>{
+      if(!this.lastUpdate || performance.now()-this.lastUpdate > 150)
+      {
         console.log("x");
-        if(this.dragging)
-          this.updateOver(this.lastEvent);
-        else
-          this.lastEvent = null;
-
-      }, 50);
-
-
-      console.log(".");
+        this.lastUpdate = performance.now();   
+        this.updateOver(this.lastEvent);
+      }
+      else
+        console.log(".");
   }
 
   /**
