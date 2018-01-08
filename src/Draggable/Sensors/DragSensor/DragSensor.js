@@ -115,23 +115,7 @@ export default class DragSensor extends Sensor {
       }
     }, 0);
 
-    let inte = window.setInterval(() => {
-      
-     
-      
-      if(!this.dragging)
-      {
-        clearInterval(inte);
-
-        this.lastEvent = null;
-      } else 
-      {
-        if(this.lastEvent)
-          this.updateOver(this.lastEvent);
-      }
-
-
-    }, 150);
+    
   }
 
 
@@ -181,6 +165,19 @@ export default class DragSensor extends Sensor {
       }
       this.lastEvent = event;
       event.preventDefault();
+
+      clearTimeout(this.timeout);
+
+      this.timeout = setTimeout(()=>{
+        console.log("x");
+        if(this.dragging)
+          this.updateOver(this.lastEvent);
+        else
+          this.lastEvent = null;
+
+      }, 300);
+
+
       console.log(".");
   }
 
