@@ -175,6 +175,7 @@ export default class DragSensor extends Sensor {
         return;
       }
       this.lastEvent = event;
+      event.preventDefault();
 
   }
 
