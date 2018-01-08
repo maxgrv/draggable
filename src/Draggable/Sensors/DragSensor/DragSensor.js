@@ -16,6 +16,9 @@ const onDragEnd = Symbol('onDragEnd');
 const onDrop = Symbol('onDrop');
 const reset = Symbol('reset');
 
+
+
+
 /**
  * This sensor picks up native browser drag events and dictates drag operations
  * @class DragSensor
@@ -113,6 +116,10 @@ export default class DragSensor extends Sensor {
     }, 0);
   }
 
+
+
+  lastEvent;
+
   /**
    * Drag over handler
    * @private
@@ -123,23 +130,31 @@ export default class DragSensor extends Sensor {
       return;
     }
 
-    const target = document.elementFromPoint(event.clientX, event.clientY);
-    const container = this.currentContainer;
+    
+    if(lastEvent && Math.max(Math.abs(lastEvent.clientX - event.clientX), Math.abs(lastEvent.clientX - event.clientX)) > 10)
+    {
+      const target = document.elementFromPoint(event.clientX, event.clientY);
+      const container = this.currentContainer;
 
-    const dragMoveEvent = new DragMoveSensorEvent({
-      clientX: event.clientX,
-      clientY: event.clientY,
-      target,
-      container,
-      originalEvent: event,
-    });
+      const dragMoveEvent = new DragMoveSensorEvent({
+        clientX: event.clientX,
+        clientY: event.clientY,
+        target,
+        container,
+        originalEvent: event,
+      });
 
-    this.trigger(container, dragMoveEvent);
+      this.trigger(container, dragMoveEvent);
 
-    if (!dragMoveEvent.canceled()) {
-      event.preventDefault();
-      event.dataTransfer.dropEffect = this.options.type;
+      if (!dragMoveEvent.canceled()) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = this.options.type;
+      }
+
     }
+
+    this.lastEvent = event;
+
   }
 
   /**
