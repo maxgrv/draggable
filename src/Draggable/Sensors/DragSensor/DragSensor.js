@@ -166,6 +166,7 @@ export default class DragSensor extends Sensor {
       this.lastEvent = event;
       event.preventDefault();
 
+      
       clearTimeout(this.timeout);
 
       this.timeout = setTimeout(()=>{
@@ -175,7 +176,7 @@ export default class DragSensor extends Sensor {
         else
           this.lastEvent = null;
 
-      }, 300);
+      }, 50);
 
 
       console.log(".");
