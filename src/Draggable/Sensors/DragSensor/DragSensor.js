@@ -131,7 +131,7 @@ export default class DragSensor extends Sensor {
     }
 
     
-    if(lastEvent && Math.max(Math.abs(lastEvent.clientX - event.clientX), Math.abs(lastEvent.clientX - event.clientX)) > 10)
+    if(this.lastEvent && Math.max(Math.abs(this.lastEvent.clientX - event.clientX), Math.abs(this.lastEvent.clientX - event.clientX)) > 10)
     {
       const target = document.elementFromPoint(event.clientX, event.clientY);
       const container = this.currentContainer;
