@@ -133,7 +133,9 @@ export default class DragSensor extends Sensor {
     
     if(this.lastEvent && Math.max(Math.abs(this.lastEvent.clientX - event.clientX), Math.abs(this.lastEvent.clientX - event.clientX)) > 10)
     {
+      console.log("calc");
       const target = document.elementFromPoint(event.clientX, event.clientY);
+      console.log("/calc");
       const container = this.currentContainer;
 
       const dragMoveEvent = new DragMoveSensorEvent({
@@ -150,6 +152,11 @@ export default class DragSensor extends Sensor {
         event.preventDefault();
         event.dataTransfer.dropEffect = this.options.type;
       }
+
+    } else 
+    {
+      console.log("skipping");
+      event.preventDefault();
 
     }
 
