@@ -143,6 +143,8 @@ export default class DragSensor extends Sensor {
       console.log("calc");
       const target = document.elementFromPoint(event.clientX, event.clientY);
       console.log("/calc");
+      console.log("dispatch");
+
       const container = this.currentContainer;
 
       const dragMoveEvent = new DragMoveSensorEvent({
@@ -159,6 +161,7 @@ export default class DragSensor extends Sensor {
         event.preventDefault();
         event.dataTransfer.dropEffect = this.options.type;
       }
+      console.log("/dispatch");
 
 
   }
@@ -172,6 +175,7 @@ export default class DragSensor extends Sensor {
   [onDragOver](event) {
 
       if (!this.dragging) {
+        this.lastEvent = null;
         return;
       }
       this.lastEvent = event;
