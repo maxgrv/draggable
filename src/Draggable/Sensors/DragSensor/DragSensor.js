@@ -117,16 +117,24 @@ export default class DragSensor extends Sensor {
 
     let inte = setInterval(() => {
       
-      this.updateOver();
+     
       
       if(!this.dragging)
+      {
         clearInterval(inte);
+        this.lastEvent = null;
+      } else 
+      {
+        if(this.lastEvent)
+          this.updateOver(this.lastEvent);
+      }
+
 
     }, 1000);
   }
 
 
-  updateOver()
+  updateOver(event)
   {
     if (!this.dragging) {
       return;
