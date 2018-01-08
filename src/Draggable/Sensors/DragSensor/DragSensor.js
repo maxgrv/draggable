@@ -114,25 +114,24 @@ export default class DragSensor extends Sensor {
         this.dragging = true;
       }
     }, 0);
+
+    let inte = setInterval(() => {
+      
+      this.updateOver();
+      
+      if(!this.dragging)
+        clearInterval(inte);
+
+    }, 1000);
   }
 
 
-
-  lastEvent;
-
-  /**
-   * Drag over handler
-   * @private
-   * @param {Event} event - Drag over event
-   */
-  [onDragOver](event) {
+  updateOver()
+  {
     if (!this.dragging) {
       return;
     }
 
-    
-    if(this.lastEvent && Math.max(Math.abs(this.lastEvent.clientX - event.clientX), Math.abs(this.lastEvent.clientX - event.clientX)) > 10)
-    {
       console.log("calc");
       const target = document.elementFromPoint(event.clientX, event.clientY);
       console.log("/calc");
@@ -153,14 +152,21 @@ export default class DragSensor extends Sensor {
         event.dataTransfer.dropEffect = this.options.type;
       }
 
-    } else 
-    {
-      console.log("skipping");
-      event.preventDefault();
 
-    }
+  }
+  
 
-    this.lastEvent = event;
+  /**
+   * Drag over handler
+   * @private
+   * @param {Event} event - Drag over event
+   */
+  [onDragOver](event) {
+
+      if (!this.dragging) {
+        return;
+      }
+      this.lastEvent = event;
 
   }
 
