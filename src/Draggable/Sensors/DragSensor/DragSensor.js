@@ -119,39 +119,7 @@ export default class DragSensor extends Sensor {
   }
 
 
-  updateOver(event)
-  {
-    if (!this.dragging) {
-      return;
-    }
-
-      console.log("calc");
-      const target = document.elementFromPoint(event.clientX, event.clientY);
-      console.log("/calc");
-      console.log("dispatch");
-
-      const container = this.currentContainer;
-
-      const dragMoveEvent = new DragMoveSensorEvent({
-        clientX: event.clientX,
-        clientY: event.clientY,
-        target,
-        container,
-        originalEvent: event,
-      });
-
-      this.trigger(container, dragMoveEvent);
-
-      if (!dragMoveEvent.canceled()) {
-        event.preventDefault();
-        event.dataTransfer.dropEffect = this.options.type;
-      }
-      console.log("/dispatch");
-
-
-  }
-  
-
+  counter = 0;
   /**
    * Drag over handler
    * @private
@@ -160,20 +128,36 @@ export default class DragSensor extends Sensor {
   [onDragOver](event) {
 
       if (!this.dragging) {
-        this.lastEvent = null;
         return;
       }
-      this.lastEvent = event;
-      event.preventDefault();
 
-      if(!this.lastUpdate || performance.now()-this.lastUpdate > 150)
+      if(this.counter++%3==0)
       {
-        console.log("x");
-        this.lastUpdate = performance.now();   
-        this.updateOver(this.lastEvent);
+        const target = document.elementFromPoint(event.clientX, event.clientY);
+        
+        const container = this.currentContainer;
+
+        const dragMoveEvent = new DragMoveSensorEvent({
+          clientX: event.clientX,
+          clientY: event.clientY,
+          target,
+          container,
+          originalEvent: event,
+        });
+
+        this.trigger(container, dragMoveEvent);
+
+        if (!dragMoveEvent.canceled()) {
+          event.preventDefault();
+          event.dataTransfer.dropEffect = this.options.type;
+        }
+
+      } else {
+
+        event.preventDefault();
+
       }
-      else
-        console.log(".");
+
   }
 
   /**
