@@ -130,9 +130,11 @@ export default class DragSensor extends Sensor {
       if (!this.dragging) {
         return;
       }
+      
 
       if(this.counter++%20==0)
       {
+        console.log("+");
         const target = document.elementFromPoint(event.clientX, event.clientY);
         
         const container = this.currentContainer;
@@ -155,6 +157,7 @@ export default class DragSensor extends Sensor {
       } else {
 
         event.preventDefault();
+        console.log("-");
 
       }
 
