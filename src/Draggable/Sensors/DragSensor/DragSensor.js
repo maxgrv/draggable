@@ -255,7 +255,7 @@ export default class DragSensor extends Sensor {
    */
   [reset]() {
     clearTimeout(this.mouseDownTimeout);
-
+    this.dragging = false;
     document.removeEventListener('mouseup', this[onMouseUp], true);
     document.removeEventListener('dragstart', this[onDragStart], false);
     document.removeEventListener('dragover', this[onDragOver], false);
