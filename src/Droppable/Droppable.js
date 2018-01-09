@@ -117,7 +117,7 @@ export default class Droppable extends Draggable {
 
     for (const droppableElement of this.droppables) {
       
-      droppableElement.classList.add(this.getClassNameFor('droppable:active'));
+      //droppableElement.classList.add(this.getClassNameFor('droppable:active'));
     }
   }
 
@@ -163,7 +163,7 @@ export default class Droppable extends Draggable {
     
 
     for (const droppable of this.droppables) {
-      droppable.classList.remove(this.getClassNameFor('droppable:active'));
+      //droppable.classList.remove(this.getClassNameFor('droppable:active'));
     }
 
     this.droppables = null;
@@ -210,7 +210,7 @@ export default class Droppable extends Draggable {
     }
 
     ////this.initialDroppable.appendChild(event.source);
-    this.lastDroppable.classList.remove(this.getClassNameFor('droppable:occupied'));
+   // this.lastDroppable.classList.remove(this.getClassNameFor('droppable:occupied'));
   }
 
   /**
