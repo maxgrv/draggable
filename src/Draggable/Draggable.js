@@ -449,7 +449,7 @@ export default class Draggable {
 
       this.trigger(dragOutEvent);
 
-      this.currentOver.classList.remove(this.getClassNameFor('draggable:over'));
+     // this.currentOver.classList.remove(this.getClassNameFor('draggable:over'));
       this.currentOver = null;
     }
 
@@ -465,12 +465,12 @@ export default class Draggable {
 
       this.trigger(dragOutContainerEvent);
 
-      this.currentOverContainer.classList.remove(this.getClassNameFor('container:over'));
+     // this.currentOverContainer.classList.remove(this.getClassNameFor('container:over'));
       this.currentOverContainer = null;
     }
 
     if (isOverContainer) {
-      overContainer.classList.add(this.getClassNameFor('container:over'));
+//      overContainer.classList.add(this.getClassNameFor('container:over'));
 
       const dragOverContainerEvent = new DragOverContainerEvent({
         source: this.source,
@@ -487,7 +487,7 @@ export default class Draggable {
     }
 
     if (isOverDraggable) {
-      target.classList.add(this.getClassNameFor('draggable:over'));
+     // target.classList.add(this.getClassNameFor('draggable:over'));
 
       const dragOverEvent = new DragOverEvent({
         source: this.source,
