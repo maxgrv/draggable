@@ -132,11 +132,12 @@ export default class DragSensor extends Sensor {
       }
       
 
-      if(this.counter++%40==0)
+      if(this.counter++%10==0)
       {
         console.log("+");
         const target = document.elementFromPoint(event.clientX, event.clientY);
-        
+        console.log("++");
+
         const container = this.currentContainer;
 
         const dragMoveEvent = new DragMoveSensorEvent({
@@ -148,7 +149,7 @@ export default class DragSensor extends Sensor {
         });
 
         this.trigger(container, dragMoveEvent);
-
+        console.log("+++");
         if (!dragMoveEvent.canceled()) {
           event.preventDefault();
           event.dataTransfer.dropEffect = this.options.type;
