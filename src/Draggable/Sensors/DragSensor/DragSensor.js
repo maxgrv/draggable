@@ -130,36 +130,24 @@ export default class DragSensor extends Sensor {
       if (!this.dragging) {
         return;
       }
+        
+      const target = document.elementFromPoint(event.clientX, event.clientY);
       
+      const container = this.currentContainer;
 
-      if(this.counter++%10==0)
-      {
-        console.log("+");
-        const target = document.elementFromPoint(event.clientX, event.clientY);
-        console.log("++");
+      const dragMoveEvent = new DragMoveSensorEvent({
+        clientX: event.clientX,
+        clientY: event.clientY,
+        target,
+        container,
+        originalEvent: event,
+      });
 
-        const container = this.currentContainer;
-
-        const dragMoveEvent = new DragMoveSensorEvent({
-          clientX: event.clientX,
-          clientY: event.clientY,
-          target,
-          container,
-          originalEvent: event,
-        });
-
-        this.trigger(container, dragMoveEvent);
-        console.log("+++");
-        if (!dragMoveEvent.canceled()) {
-          event.preventDefault();
-          event.dataTransfer.dropEffect = this.options.type;
-        }
-
-      } else {
-
+      this.trigger(container, dragMoveEvent);
+      
+      if (!dragMoveEvent.canceled()) {
         event.preventDefault();
-        console.log("-");
-
+        event.dataTransfer.dropEffect = this.options.type;
       }
 
   }
