@@ -132,7 +132,7 @@ export default class DragSensor extends Sensor {
       }
       
 
-      if(this.counter++%20==0)
+      if(this.counter++%40==0)
       {
         console.log("+");
         const target = document.elementFromPoint(event.clientX, event.clientY);
